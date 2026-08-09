@@ -6,7 +6,7 @@ Welcome to the official repository for **From One Lens to Another**. This reposi
 ---
 
 ## 📖 The Memoir
-This project is a work in progress. I update this file regularly as new chapters are completed.
+This project is a work in progress. I will update this file regularly as new chapters are completed.
 
 👉 **[Read the Autobiography Draft (PDF)](./autobiography.pdf)**
 
@@ -20,7 +20,6 @@ This eBook is an artistic display of the author’s personal recollection, withi
 and emotions.  
 
 While the author has written to the best of his recollection, the author recognizes that memory and perspectives are subjective, and others may recall these events differently. The views expressed here are either his own or creatively embedded, and are not intended as objective fact, nor as an attempt to defame or harm any individual or institution.
-
 
 ---
 
