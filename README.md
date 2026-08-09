@@ -11,8 +11,16 @@ This project is a work in progress. I update this file regularly as new chapters
 👉 **[Read the Autobiography Draft (PDF)](./autobiography.pdf)**
 
 ### ⚖️ Book Copyright Notice
-**Copyright © 2026 [Your Name]. All Rights Reserved.**  
-The text of this autobiography is the sole intellectual property of the author. No part of this manuscript may be copied, reproduced, redistributed, or modified in any form without explicit written permission.
+**Copyright © 2026 Ali Manan. All Rights Reserved.**  
+The text of this autobiography is the sole intellectual property of the author. No part of this manuscript may be copied, reproduced, redistributed, or modified in any form without explicit written permission. 
+
+### ⚖️ DISCLAIMER
+**Please read this section before proceeding with the book.**  
+This eBook is an artistic display of the author’s personal recollection, within various settings, which reflects the author’s own memories, interpretations, 
+and emotions.  
+
+While the author has written to the best of his recollection, the author recognizes that memory and perspectives are subjective, and others may recall these events differently. The views expressed here are either his own or creatively embedded, and are not intended as objective fact, nor as an attempt to defame or harm any individual or institution.
+
 
 ---
 
