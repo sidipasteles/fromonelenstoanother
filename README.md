@@ -8,7 +8,7 @@ Welcome to the official repository for **From One Lens to Another**. This reposi
 ## 📖 The Memoir
 This project is a work in progress. I will update this file regularly as new chapters are completed.
 
-👉 **[Read the Autobiography Draft (PDF)](./autobiography.pdf)**
+👉 **[Read the Autobiography Draft (PDF)](./book.pdf)**
 
 ### ⚖️ Book Copyright Notice
 **Copyright © 2026 Ali Manan. All Rights Reserved.**  
