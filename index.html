@@ -7,43 +7,80 @@
     <style>
         :root {
             --primary: #1a2a6c;
-            --bg: #f4f6f9;
+            --accent: #3498db;
+            --bg: #f8f9fa;
+            --text: #333333;
         }
         body {
             margin: 0;
-            padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg);
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            overflow: hidden;
+            color: var(--text);
+            line-height: 1.6;
         }
         header {
             background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
             color: white;
             text-align: center;
-            padding: 15px 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 10;
+            padding: 50px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         header h1 {
             margin: 0;
-            font-size: 1.8rem;
+            font-size: 2.6rem;
+            letter-spacing: -1px;
         }
         header p {
-            margin: 5px 0 0 0;
-            font-size: 1rem;
+            font-size: 1.2rem;
             opacity: 0.9;
+            margin-top: 10px;
         }
-        .viewer-container {
-            flex-grow: 1;
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .book-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .book-mockup {
+            width: 160px;
+            height: 240px;
+            background: linear-gradient(45deg, #1a2a6c, #3498db);
+            margin: 0 auto 25px auto;
+            border-radius: 4px 12px 12px 4px;
+            box-shadow: 5px 5px 20px rgba(0,0,0,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            padding: 20px;
+            border-left: 8px solid rgba(0,0,0,0.2);
+        }
+        .synopsis {
+            text-align: left;
+            margin: 25px 0;
+            padding: 20px;
+            border-left: 4px solid var(--accent);
+            background: #f0f4f8;
+            border-radius: 0 8px 8px 0;
+        }
+        .viewer-box {
             width: 100%;
-            height: calc(100vh - 80px);
-            position: relative;
+            height: 650px;
             background: #525659;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+            margin-top: 30px;
         }
-        /* Hides standard browser print/download UI overlays where possible */
+        /* Hides standard browser download and print utilities inside the frame */
         iframe {
             width: 100%;
             height: 100%;
@@ -55,14 +92,28 @@
 
     <header>
         <h1>From One Lens to Another</h1>
-        <p>Online Document Reader Mode</p>
+        <p>An exploration of perspectives, storytelling, and creative frames.</p>
     </header>
 
-    <div class="viewer-container">
-        <!-- '#toolbar=0' tells modern browsers to hide the download/print bars -->
-        <iframe src="book.pdf#toolbar=0&navpanes=0&scrollbar=1" type="application/pdf"></iframe>
+    <div class="container">
+        <div class="book-card">
+            <div class="book-mockup">
+                From One Lens to Another
+            </div>
+            
+            <h2>About the Book</h2>
+            <div class="synopsis">
+                <p>Welcome to the digital library platform for <strong>From One Lens to Another</strong>. Use the embedded streaming console below to browse, read, and preview chapters directly inside your browser window.</p>
+            </div>
+
+            <!-- Built-in reader console without download paths -->
+            <div class="viewer-box">
+                <iframe src="book.pdf#toolbar=0&navpanes=0&scrollbar=1" type="application/pdf"></iframe>
+            </div>
+        </div>
     </div>
 
 </body>
 </html>
+
 
