@@ -4,176 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>From One Lens to Another</title>
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cloudflare.com">
+
+    <!-- EB Garamond font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --bg-dark: #141416;
-            --bg-card: #1c1c1f;
-            --text-main: #f3f3f6;
-            --text-muted: #a1a1aa;
-            --accent-glow: #3f3f46;
-            --border-sketch: rgba(255, 255, 255, 0.08);
+            --bg: #121212;
+            --panel: #1b1b1b;
+            --panel-alt: #232323;
+            --border: #333333;
+            --text: #e8e6e1;
+            --text-dim: #a8a49c;
+            --accent: #c9a24b; /* soft gold accent for a book/library feel */
         }
+        * { box-sizing: border-box; }
         body {
             margin: 0;
-            font-family: 'EB Garamond', serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-            position: relative;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            font-size: 1.15rem;
-        }
-        body::before, body::after {
-            content: "";
-            position: absolute;
-            width: 130px;
-            height: 130px;
-            opacity: 0.12;
-            pointer-events: none;
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
-        body::before {
-            top: 40px;
-            left: 20px;
-            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://w3.org' viewBox='0 0 100 100' stroke='white' stroke-width='1.5' fill='none'><circle cx='50' cy='50' r='35'/><circle cx='50' cy='50' r='20'/><circle cx='42' cy='42' r='5'/><path d='M15 50 h6M79 50 h6M50 15 v6M50 79 v6'/></svg>");
-        }
-        body::after {
-            bottom: 60px;
-            right: 20px;
-            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://w3.org' viewBox='0 0 100 100' stroke='white' stroke-width='1.5' fill='none'><path d='M10 10 h20 v20 M90 10 h-20 v-20 M10 90 h20 v-20 M90 90 h-20 v-20 M35 50 h30 M50 35 v30'/></svg>");
+            font-family: "EB Garamond", Georgia, serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
         }
         header {
+            background: linear-gradient(135deg, #0d0d0d, #1c1c1c);
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
             text-align: center;
-            padding: 75px 20px 45px 20px;
+            padding: 60px 20px;
         }
         header h1 {
             margin: 0;
-            font-size: 3.2rem;
+            font-size: 3rem;
             letter-spacing: 1px;
-            font-weight: 600;
+            font-weight: 500;
         }
         header p {
             font-size: 1.25rem;
-            color: var(--text-muted);
-            margin-top: 10px;
+            color: var(--text-dim);
             font-style: italic;
+            margin-top: 12px;
         }
         .container {
-            max-width: 800px;
-            margin: 0 auto 60px auto;
-            padding: 0 15px;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
         .book-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-sketch);
-            border-radius: 16px;
-            padding: 50px 35px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
             text-align: center;
+            margin-bottom: 30px;
         }
         .book-mockup {
-            width: 170px;
-            height: 245px;
-            margin: 0 auto 35px auto;
-            border-radius: 4px 14px 14px 4px;
-            box-shadow: 10px 15px 35px rgba(0,0,0,0.75);
-            border-left: 8px solid #09090b;
-            background-image: url('cover.png'); 
+            width: 180px;
+            height: 260px;
+            margin: 0 auto 25px auto;
+            border-radius: 4px 12px 12px 4px;
+            box-shadow: 5px 5px 20px rgba(0,0,0,0.5);
+            border-left: 8px solid rgba(0,0,0,0.4);
+            background-color: #2a2a2a;
+            background-image: url('cover.png'); /* your uploaded cover image */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            position: relative;
         }
-        .book-mockup::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(105deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 40%);
-            border-radius: 0 12px 12px 0;
-        }
-        h2 {
-            font-size: 1.7rem;
+        .book-card h2 {
             font-weight: 500;
-            margin-top: 10px;
-            color: var(--text-main);
             letter-spacing: 0.5px;
         }
         .synopsis {
             text-align: left;
-            margin: 30px 0;
-            padding: 26px;
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px dashed var(--border-sketch);
-            border-radius: 8px;
-            color: var(--text-muted);
-            font-size: 1.2rem;
+            margin: 25px 0;
+            padding: 20px;
+            border-left: 4px solid var(--accent);
+            background: var(--panel-alt);
+            border-radius: 0 8px 8px 0;
+            color: var(--text-dim);
         }
         .synopsis strong {
-            color: var(--text-main);
-            font-weight: 600;
+            color: var(--text);
         }
         .viewer-box {
             width: 100%;
-            background: #09090b;
-            border: 1px solid var(--border-sketch);
-            border-radius: 12px;
-            box-shadow: inset 0 4px 25px rgba(0,0,0,0.85);
-            margin-top: 45px;
-            padding: 30px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            height: 650px;
+            background: #0a0a0a;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow-y: auto;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+            margin-top: 30px;
+            padding: 20px 0;
+            position: relative;
         }
         .pdf-page-canvas {
             display: block;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
-            max-width: 92%;
-            height: auto !important;
-            border: 1px solid #27272a;
-            background-color: white;
-        }
-        .nav-controls {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-            margin-top: 25px;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            font-weight: 400;
-        }
-        .nav-btn {
-            background-color: #27272a;
-            color: var(--text-main);
-            border: 1px solid var(--accent-glow);
-            padding: 8px 26px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-            font-family: 'EB Garamond', serif;
-            font-size: 1.1rem;
-            transition: all 0.2s ease;
-        }
-        .nav-btn:hover:not(:disabled) {
-            background-color: #3f3f46;
-            border-color: #52525b;
-        }
-        .nav-btn:disabled {
-            background-color: #141416;
-            color: #3f3f46;
-            border-color: transparent;
-            cursor: not-allowed;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            max-width: 95%;
         }
         .loading-text {
-            color: var(--text-muted);
+            color: var(--text-dim);
+            margin-top: 300px;
             font-style: italic;
-            padding: 40px 0;
-            font-size: 1.1rem;
         }
     </style>
 </head>
@@ -181,96 +119,61 @@
 
     <header>
         <h1>From One Lens to Another</h1>
-        <p>An exploration of frames, focus, and visual chapters.</p>
+        <p>An exploration of perspectives, storytelling, and creative frames.</p>
     </header>
 
     <div class="container">
         <div class="book-card">
             <div class="book-mockup"></div>
-            
-            <h2>About the Manuscript</h2>
+
+            <h2>About the Book</h2>
             <div class="synopsis">
-                <p>Welcome to the digital library platform for <strong>From One Lens to Another</strong>. Use the secure streaming console below to browse and preview chapters directly inside your browser window.</p>
+                <p>Welcome to the digital library platform for <strong>From One Lens to Another</strong>. Use the streaming console below to browse and preview chapters directly inside your browser window.</p>
             </div>
 
-            <div class="viewer-box">
-                <div id="loading-message" class="loading-text">Spooling secure image feed...</div>
-                <canvas id="pdf-single-canvas" class="pdf-page-canvas" style="display:none;"></canvas>
-                
-                <div class="nav-controls">
-                    <button class="nav-btn" id="prev-page-btn" disabled>PREV</button>
-                    <span id="page-num-indicator">PAGE 0 / 0</span>
-                    <button class="nav-btn" id="next-page-btn" disabled>NEXT</button>
-                </div>
+            <div class="viewer-box" id="pdf-stream-container">
+                <div id="loading-message" class="loading-text">Loading book pages…</div>
             </div>
         </div>
     </div>
 
-    <script src="https://cloudflare.com"></script>
+    <!-- PDF.js core engine, loaded from the real cdnjs CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cloudflare.com';
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-        const pdfUrl = 'book.pdf';
-        let pdfDoc = null;
-        let pageNum = 1;
-        let pageRendering = false;
-        let pageNumPending = null;
-        
-        const canvas = document.getElementById('pdf-single-canvas');
-        const ctx = canvas.getContext('2d');
+        const pdfUrl = 'book.pdf'; // your uploaded PDF, same folder as this file
+        const container = document.getElementById('pdf-stream-container');
         const loadingMessage = document.getElementById('loading-message');
 
-        function renderPage(num) {
-            pageRendering = true;
-            pdfDoc.getPage(num).then(function(page) {
-                const viewport = page.getViewport({ scale: window.innerWidth < 600 ? 0.85 : 1.35 });
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-
-                const renderContext = {
-                    canvasContext: ctx,
-                    viewport: viewport
-                };
-                
-                const renderTask = page.render(renderContext);
-                renderTask.promise.then(function() {
-                    pageRendering = false;
-                    if (pageNumPending !== null) {
-                        renderPage(pageNumPending);
-                        pageNumPending = null;
-                    }
-                });
-            });
-
-            document.getElementById('page-num-indicator').textContent = "PAGE " + num + " / " + pdfDoc.numPages;
-            document.getElementById('prev-page-btn').disabled = (num <= 1);
-            document.getElementById('next-page-btn').disabled = (num >= pdfDoc.numPages);
-        }
-
-        function queueRenderPage(num) {
-            if (pageRendering) {
-                pageNumPending = num;
-            } else {
-                renderPage(num);
-            }
-        }
-
-        document.getElementById('prev-page-btn').addEventListener('click', function() {
-            if (pageNum <= 1) return;
-            pageNum--;
-            queueRenderPage(pageNum);
-        });
-
-        document.getElementById('next-page-btn').addEventListener('click', function() {
-            if (pageNum >= pdfDoc.numPages) return;
-            pageNum++;
-            queueRenderPage(pageNum);
-        });
-
-        pdfjsLib.getDocument(pdfUrl).promise.then(function(pdfDoc_) {
-            pdfDoc = pdfDoc_;
+        pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
             loadingMessage.style.display = 'none';
-            canvas.style.display = 'block';
-            renderPage(pageNum);
+
+            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                pdf.getPage(pageNum).then(function(page) {
+                    const scale = 1.5;
+                    const viewport = page.getViewport({ scale: scale });
+
+                    const canvas = document.createElement('canvas');
+                    canvas.className = 'pdf-page-canvas';
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    container.appendChild(canvas);
+
+                    page.render({
+                        canvasContext: context,
+                        viewport: viewport
+                    });
+                });
+            }
         }).catch(function(error) {
-                  console.error('Core engine crash: ', error);loadingMessage.textContent = 'Streaming error. Check file mapping fields.';});
+            console.error('Error rendering book file streams: ', error);
+            loadingMessage.textContent = 'Unable to load book.pdf — make sure it\'s uploaded to the same folder as index.html.';
+        });
+    </script>
+
+</body>
+</html>
