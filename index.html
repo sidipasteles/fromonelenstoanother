@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>From One Lens to Another</title>
+    <!-- Imports Mozilla's PDF.js rendering styles safely -->
+    <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         :root {
             --primary: #1a2a6c;
@@ -48,20 +50,18 @@
             text-align: center;
             margin-bottom: 30px;
         }
+        /* Renders your uploaded book cover image inside the 3D book mockup */
         .book-mockup {
-            width: 160px;
-            height: 240px;
-            background: linear-gradient(45deg, #1a2a6c, #3498db);
+            width: 180px;
+            height: 260px;
             margin: 0 auto 25px auto;
             border-radius: 4px 12px 12px 4px;
             box-shadow: 5px 5px 20px rgba(0,0,0,0.25);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            padding: 20px;
             border-left: 8px solid rgba(0,0,0,0.2);
+            background-image: url('cover.png'); /* Matches your uploaded cover image name */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
         .synopsis {
             text-align: left;
@@ -71,20 +71,28 @@
             background: #f0f4f8;
             border-radius: 0 8px 8px 0;
         }
+        /* Custom streaming window optimized for PDF.js engine */
         .viewer-box {
             width: 100%;
             height: 650px;
-            background: #525659;
+            background: #404040;
             border-radius: 8px;
-            overflow: hidden;
-            box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+            overflow-y: auto;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
             margin-top: 30px;
+            padding: 20px 0;
+            position: relative;
         }
-        /* Hides standard browser download and print utilities inside the frame */
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .pdf-page-canvas {
+            display: block;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            max-width: 95%;
+        }
+        .loading-text {
+            color: #ffffff;
+            margin-top: 300px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -92,28 +100,68 @@
 
     <header>
         <h1>From One Lens to Another</h1>
-        <p>A memoir. Three years worth of schisms, stories, and growth.</p>
+        <p>An exploration of perspectives, storytelling, and creative frames.</p>
     </header>
 
     <div class="container">
         <div class="book-card">
-            <div class="book-mockup">
-                From One Lens to Another
-            </div>
+            <!-- Displays the cover image set in CSS styles above -->
+            <div class="book-mockup"></div>
             
             <h2>About the Book</h2>
             <div class="synopsis">
-                <p>Welcome to the digital library platform for <strong>From One Lens to Another</strong>. Use the embedded streaming console below to browse, read, and preview chapters directly inside your browser window.</p>
+                <p>Welcome to the digital library platform for <strong>From One Lens to Another</strong>. Use the secure streaming console below to browse and preview chapters directly inside your browser window.</p>
             </div>
 
-            <!-- Built-in reader console without download paths -->
-            <div class="viewer-box">
-                <iframe src="book.pdf#toolbar=0&navpanes=0&scrollbar=1" type="application/pdf"></iframe>
+            <!-- Streaming window container structure -->
+            <div class="viewer-box" id="pdf-stream-container">
+                <div id="loading-message" class="loading-text">Loading Book Pages securely...</div>
             </div>
         </div>
     </div>
 
+    <!-- Script assets running Mozilla PDF.js Core engine without interface toolbars -->
+    <script src="https://cloudflare.com"></script>
+    <script>
+        // Points directly to the global background source pipeline
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cloudflare.com';
+
+        const pdfUrl = 'book.pdf'; // Points to your uploaded file
+        const container = document.getElementById('pdf-stream-container');
+        const loadingMessage = document.getElementById('loading-message');
+
+        // Dynamically stream, translate, and render all pages onto secure canvases
+        pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
+            loadingMessage.style.display = 'none'; // Clear the loading state text
+            
+            // Loop sequentially through every single page found in your book.pdf
+            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                pdf.getPage(pageNum).then(function(page) {
+                    const scale = 1.5;
+                    const viewport = page.getViewport({ scale: scale });
+
+                    // Generate a standard graphic layout element for this specific page
+                    const canvas = document.createElement('canvas');
+                    canvas.className = 'pdf-page-canvas';
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    container.appendChild(canvas);
+
+                    // Force draw the page content onto the custom canvas canvas canvas context
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport: viewport
+                    };
+                    page.render(renderContext);
+                });
+            }
+        }).catch(function(error) {
+            console.error('Error rendering book file streams: ', error);
+            loadingMessage.textContent = 'Unable to stream book content. Verify your file is named book.pdf';
+        });
+    </script>
+
 </body>
 </html>
-
-
